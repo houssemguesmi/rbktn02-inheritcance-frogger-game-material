@@ -27,7 +27,8 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y,);
 };
 Enemy.prototype.reset = function(y) {
-    this.x = (-Math.random()*100)+200;
+    this.x = Math.floor(Math.random() * (520 + 160 + 1) - 160);
+    this.speed = this.speed = (Math.random()* this.max)+50
     this.y = y;
 }
 // Now write your own player class
@@ -97,18 +98,33 @@ var allEnemies = [Enemy1, Enemy2, Enemy3, Enemy4]
         if(player.x < Enemy4.x+100 && player.x > Enemy4.x-100){
             player.reset()
             Enemy4.reset(305)
+            Enemy3.reset(225)
+            Enemy2.reset(140)
+            Enemy1.reset(60)
         }
     } else if (player.y > 190 && player.y < 230) {
         if(player.x < Enemy3.x+100 && player.x > Enemy3.x-100){
             player.reset()
+            Enemy4.reset(305)
+            Enemy3.reset(225)
+            Enemy2.reset(140)
+            Enemy1.reset(60)
         }
     } else if (player.y > 90 && player.y < 150) {
         if(player.x < Enemy2.x+100 && player.x > Enemy2.x-100){
             player.reset()
+            Enemy4.reset(305)
+            Enemy3.reset(225)
+            Enemy2.reset(140)
+            Enemy1.reset(60)
         }
     } else if (player.y > 10 && player.y < 70) {
         if(player.x < Enemy1.x+100 && player.x > Enemy1.x-100){
             player.reset()
+            Enemy4.reset(305)
+            Enemy3.reset(225)
+            Enemy2.reset(140)
+            Enemy1.reset(60)
         }
     }
  },250)
