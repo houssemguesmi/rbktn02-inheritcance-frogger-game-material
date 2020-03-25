@@ -7,6 +7,53 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+    <div id='bar'>
+        <table id='bartable'>
+            <tr id='row'>
+                <td id='resetpart'>
+                    <input type='button' value='Reset Game' id='reset'>
+                </td>
+                <td id='scorepart'>
+                    <label>Your Score: </label><label id='score'>0</label>
+                </td>
+                <td id='livespart'>
+                    <img src='images/Heart.png' id='heart'><label>:</label><label id='score'>0</label>
+                </td>
+                <td id='part'>
+                   
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <table id='chars'>
+        <tr>
+            <td id='charmessage' colspan='2'>
+                <p>Please Pick Your Character</p>
+            </td>
+        </tr>
+        <tr>
+            <td class='chars' id='charboy'>
+                <img id='boy' src='images/char-boy.png'>
+            </td>
+            <td class='chars' id='charcatgirl'>
+                <img id='chgirl' src='images/char-cat-girl.png'>
+            </td>
+        </tr>
+        <tr>
+            <td class='chars' id='charhorngirl'>
+                <img id='horngirl' src='images/char-horn-girl.png'>
+            </td>
+            <td class='chars' id='charpinkgirl'>
+                <img id='pinkgirl' src='images/char-pink-girl.png'>
+            </td>
+        </tr>
+        <tr>
+            <td class='chars' id='charprincessgirl' colspan="2">
+                <img id='princessgirl' src='images/char-princess-girl.png'>
+            </td>
+        </tr>
+    </table>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
