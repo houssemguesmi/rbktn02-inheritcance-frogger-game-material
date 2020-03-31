@@ -18,8 +18,8 @@ Enemy.prototype.reset = function(y) {
     this.y = y;
 }
 var Player = function(sprite) {
-    this.x = 340;
-    this.y = 500;
+    this.x = 350;
+    this.y = 530;
     this.speed = 5;
     this.sprite = sprite || 'boy';
 };
@@ -27,27 +27,27 @@ Player.prototype.update = function(dt) {
     //IDK what does this do
 };
 Player.prototype.handleInput = function(e) {
-    if (e == 'left' && this.x >= -10) {
+    if (e == 'left' && this.x >= 0) {
         this.x -= 30
     } else if (e == 'down' && this.y < 530) {
         this.y += 30
     } else if (e == 'right' && this.x <= 750) {
         this.x += 30
-    } else if (e == 'up' && this.y >= -40) {
+    } else if (e == 'up' && this.y >= -20) {
         this.y -= 30
     }
-    if(this.y === -70) {
+    if(this.y === -40) {
         let context = this;
         setTimeout(function(){context.reset()},2000)
     }
 }
 Player.prototype.reset = function() {
-    this.x = 340;
-    this.y = 500;
+    this.x = 350;
+    this.y = 530;
 }
 // Draw the enemy on the screen, required method for game
 Player.prototype.render = function() {
-    ctx.drawImage(document.getElementById(this.sprite), this.x, this.y);
+    ctx.drawImage(document.getElementById(this.sprite), this.x, this.y,80,150);
 };
 var Game = function() {
     this.score = 0;
@@ -71,8 +71,7 @@ var player = new Player();
 var allEnemies = [] 
 
 $('.chars').click(function() {
-     id = $(this).find(':nth-child(1)')[0].id;
-    console.log(id)
+    id = $(this).find(':nth-child(1)')[0].id;
     player = new Player(id)
     var Enemy1 = new Enemy(-30, 60)
     var Enemy2 = new Enemy(30, 110)
@@ -86,6 +85,7 @@ $('.chars').click(function() {
     allEnemies=[Enemy1, Enemy2, Enemy3, Enemy4, Enemy5, Enemy6, Enemy7, Enemy8, Enemy9]
     $('#chars').hide()
     $('#canvas').show()
+    //this is for making the enemeies appear again from the left
     setInterval(function() {
         if(Enemy1.x > 780) {
             Enemy1.x = -160;
@@ -107,6 +107,54 @@ $('.chars').click(function() {
             Enemy9.x = -160;
         }
     },250)
+    //this is handling the collision 
+    // setInterval(function() {
+    //     if(player.y > 270 && player.y < 330) {
+    //         if(player.x < Enemy4.x+100 && player.x > Enemy4.x-100){
+    //             $('#loss').show()
+    //             player.reset()
+    //             Enemy4.reset(305)
+    //             Enemy3.reset(225)
+    //             Enemy2.reset(140)
+    //             Enemy1.reset(60)  
+    //             setTimeout(function(){$('#loss').hide()},1000)
+    //             return;
+    //         }
+    //     } else if (player.y > 190 && player.y < 230) {
+    //         if(player.x < Enemy3.x+100 && player.x > Enemy3.x-100){
+    //             $('#loss').show()
+    //             player.reset()
+    //             Enemy4.reset(305)
+    //             Enemy3.reset(225)
+    //             Enemy2.reset(140)
+    //             Enemy1.reset(60)  
+    //             setTimeout(function(){$('#loss').hide()},1000)
+    //             return;
+    //         }
+    //     } else if (player.y > 90 && player.y < 150) {
+    //         if(player.x < Enemy2.x+100 && player.x > Enemy2.x-100){
+    //             $('#loss').show()
+    //             player.reset()
+    //             Enemy4.reset(305)
+    //             Enemy3.reset(225)
+    //             Enemy2.reset(140)
+    //             Enemy1.reset(60)    
+    //             setTimeout(function(){$('#loss').hide()},1500)
+    //             return;
+    //         }
+    //     } else if (player.y > 10 && player.y < 70) {
+    //         if(player.x < Enemy1.x+100 && player.x > Enemy1.x-100){
+    //             $('#loss').show()
+    //             player.reset()
+    //             Enemy4.reset(305)
+    //             Enemy3.reset(225)
+    //             Enemy2.reset(140)
+    //             Enemy1.reset(60)    
+    //             setTimeout(function(){$('#loss').hide()},1500)
+    //             return;
+    //         }
+    //     }
+    //  },250)
 })
 $('#reset').click(function() {
     player.reset()
@@ -119,50 +167,3 @@ $('#reset').click(function() {
 
 //this is the solution for collision (loss) for 4 enemies and a 5*6 game now i'll fix it for 12*12
 
-// setInterval(function() {
-//     if(player.y > 270 && player.y < 330) {
-//         if(player.x < Enemy4.x+100 && player.x > Enemy4.x-100){
-//             $('#loss').show()
-//             player.reset()
-//             Enemy4.reset(305)
-//             Enemy3.reset(225)
-//             Enemy2.reset(140)
-//             Enemy1.reset(60)  
-//             setTimeout(function(){$('#loss').hide()},1000)
-//             return;
-//         }
-//     } else if (player.y > 190 && player.y < 230) {
-//         if(player.x < Enemy3.x+100 && player.x > Enemy3.x-100){
-//             $('#loss').show()
-//             player.reset()
-//             Enemy4.reset(305)
-//             Enemy3.reset(225)
-//             Enemy2.reset(140)
-//             Enemy1.reset(60)  
-//             setTimeout(function(){$('#loss').hide()},1000)
-//             return;
-//         }
-//     } else if (player.y > 90 && player.y < 150) {
-//         if(player.x < Enemy2.x+100 && player.x > Enemy2.x-100){
-//             $('#loss').show()
-//             player.reset()
-//             Enemy4.reset(305)
-//             Enemy3.reset(225)
-//             Enemy2.reset(140)
-//             Enemy1.reset(60)    
-//             setTimeout(function(){$('#loss').hide()},1500)
-//             return;
-//         }
-//     } else if (player.y > 10 && player.y < 70) {
-//         if(player.x < Enemy1.x+100 && player.x > Enemy1.x-100){
-//             $('#loss').show()
-//             player.reset()
-//             Enemy4.reset(305)
-//             Enemy3.reset(225)
-//             Enemy2.reset(140)
-//             Enemy1.reset(60)    
-//             setTimeout(function(){$('#loss').hide()},1500)
-//             return;
-//         }
-//     }
-//  },250)
